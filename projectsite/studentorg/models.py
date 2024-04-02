@@ -1,12 +1,12 @@
 from django.db import models
-class BaseModel(models. Model):
+class BaseModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True) 
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         abstract = True
 
-class College (BaseModel):
+class College(BaseModel):
     college_name = models.CharField(max_length=150)
 
     def __str__(self):
@@ -40,7 +40,7 @@ class Student (BaseModel):
         return f"{self.lastname}, {self.firstname}"
 
 class OrgMember(BaseModel):
-    student = models.ForeignKey (Student, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE) 
     date_joined = models.DateField()
 
