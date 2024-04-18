@@ -29,12 +29,12 @@
           <span class="sr-only">(current)</span>
         </span>
       </li>
-      {% elif page_num > page_obj.number|add:'-3' and page_num <
+      {% if page_num > page_obj.number|add:'-3' and page_num <
       page_obj.number|add:'3' %}
       <li class="page-item">
         <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
       </li>
-      {% endfor %} {% if page_obj.has_next %}
+      {% endfor %} {% endif %} {% if page_obj.has_next %}
       <li class="page-item">
         <a class="page-link" href="?page={{ page_obj.next_page_number }}"
           >Next</a
@@ -60,4 +60,3 @@
     <b>{{ paginator.count }}</b> entries
   </div>
 </div>
-{% endif %}
