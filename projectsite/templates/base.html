@@ -1,9 +1,9 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>{%block title %}PSUSphere{% endblock %}</title>
+	<title>{% block title %}PSUSphere{% endblock %}</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -104,11 +104,14 @@
 							</ul>
 						</li>
 						<li class="nav-item dropdown">
-							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> <img src="{% static 'img/profile.jpg' %}}" alt="user-img" width="36" class="img-circle"><span >Hizrian</span></span> </a>
+							<a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#" aria-expanded="false"> 
+								<img src="{% static 'img/profile.jpg' %}" alt="user-img" width="36" class="img-circle">
+								<span >Hizrian</span></span> </a>
 							<ul class="dropdown-menu dropdown-user">
 								<li>
 									<div class="user-box">
-										<div class="u-img"><img src="{% static 'img/profile.png' %}" alt="user"></div>
+										<div class="u-img">
+											<img src="{% static 'img/profile.jpg' %}" alt="user"></div>
 										<div class="u-text">
 											<h4>Hizrian</h4>
 											<p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
@@ -174,7 +177,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="components.html">
+							<a href="{% url 'organization-list' %}">
 								<i class="la la-table"></i>
 								<p>Organization</p>
 							</a>
