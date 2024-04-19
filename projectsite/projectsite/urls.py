@@ -38,6 +38,16 @@ urlpatterns = [
     path('student-list/<pk>', Student_ListUpdateView.as_view(), name='student-update'),
     path('student-list/<pk>/delete', Student_ListDeleteView.as_view(), name='student-delete'),
     
+    path('college-list', College_List.as_view(), name='college-list'),
+    path('college-list/add', College_ListCreateView.as_view(), name='college-add'),
+    path('college-list/<pk>', College_ListUpdateView.as_view(), name='college-update'),
+    path('college-list/<pk>/delete', College_ListDeleteView.as_view(), name='college-delete'),
+    
+    path('program-list', Program_List.as_view(), name='program-list'),
+    path('program-list/add', Program_ListCreateView.as_view(), name='program-add'),
+    path('program-list/<pk>', Program_ListUpdateView.as_view(), name='program-update'),
+    path('program-list/<pk>/delete', Program_ListDeleteView.as_view(), name='program-delete'),
+    
     re_path(r'^login/$', auth_views.LoginView.as_view(
         template_name='login.html'), name='login'),
     re_path(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),

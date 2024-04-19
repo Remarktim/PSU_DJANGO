@@ -6,8 +6,8 @@ from django.db.models import Q
 from django.views.generic.list import ListView
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from studentorg.models import Organization, OrgMember, Student
-from studentorg.forms import OrganizationForm, StudentForm, OrgMemberForm
+from studentorg.models import Organization, OrgMember, Student, College, Program
+from studentorg.forms import OrganizationForm, StudentForm, OrgMemberForm, CollegeForm, ProgramForm
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -124,4 +124,70 @@ class Student_ListDeleteView(DeleteView):
 #############################################################################
     
 
-
+class College_List(ListView):
+    model = College
+    context_object_name = 'college'
+    template_name = 'college/colleges.html'
+    paginate_by = 5
+    
+    def get_queryset(self, *args, **kwargs):
+        qs = super(College_List, self).get_queryset(*args, **kwargs)
+        if self.request.GET.get("q") != None:
+            query = self.request.GET.get('q')
+            qs = qs.filter(Q(college_name__icontains=query))
+        return qs
+    
+    
+class College_ListCreateView(CreateView):
+    model = College
+    form_class = CollegeForm
+    template_name = 'college/colleges_add.html'
+    success_url = reverse_lazy('college-list')
+    
+class College_ListUpdateView(UpdateView):
+    model = College
+    form_class = CollegeForm
+    template_name = 'college/colleges_edit.html'
+    success_url = reverse_lazy('college-list')
+    
+class College_ListDeleteView(DeleteView):
+    model = College
+    template_name = 'college/colleges_del.html'
+    success_url = reverse_lazy('college-list')
+    
+#############################################################################
+    
+class Program_List(ListView):
+    model = Program
+    context_object_name = 'program'
+    template_name = 'program/programs.html'
+    paginate_by = 5
+    
+    def get_queryset(self, *args, **kwargs):
+        qs = super(Program_List, self).get_queryset(*args, **kwargs)
+        if self.request.GET.get("q") != None:
+            query = self.request.GET.get('q')
+            qs = qs.filter(Q(prog_name__icontains=query) |
+            Q(college__college_name__icontains=query))
+        return qs
+    
+    
+class Program_ListCreateView(CreateView):
+    model = Program
+    form_class = ProgramForm
+    template_name = 'program/programs_add.html'
+    success_url = reverse_lazy('program-list')
+    
+class Program_ListUpdateView(UpdateView):
+    model = Program
+    form_class = ProgramForm
+    template_name = 'program/programs_edit.html'
+    success_url = reverse_lazy('program-list')
+    
+class Program_ListDeleteView(DeleteView):
+    model = Program
+    template_name = 'program/programs_del.html'
+    success_url = reverse_lazy('program-list')
+    
+    
+#############################################################################

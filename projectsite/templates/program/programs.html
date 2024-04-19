@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="content">
   <div class="container-fluid">
-    <h4 class="page-title">Collges</h4>
+    <h4 class="page-title">Programs</h4>
     <div class="row">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <div class="card-title">List of Collges</div>
+            <div class="card-title">List of Programs</div>
             <div class="card-category">Page Subtitle</div>
           </div>
           <br />
@@ -14,7 +14,7 @@
             <div class="col-md-6">
               <form
                 class="navbar-left navbar-form nav-search mr-md-3"
-                action="{% url 'college-list' %}">
+                action="{% url 'program-list' %}">
                 <div class="input-group">
                   <input
                     type="text"
@@ -32,9 +32,9 @@
             <div class="col-md-6">
               <div class="pull-right">
                 <a
-                  href="{% url 'college-add' %}"
+                  href="{% url 'program-add' %}"
                   class="btn btn-success btn-rounded"
-                  >Add College</a
+                  >Add Program</a
                 >
               </div>
             </div>
@@ -43,24 +43,25 @@
             <table class="table table-striped mt-3">
               <thead>
                 <tr>
-                  <th scope="col">College</th>
-                  <th scope="col">Action</th>
+                    <th scope="col">Program Name</th>
+                    <th scope="col">College</th>
+                    <th scope="col">Action</th>
+                </tr>
               </thead>
               <tbody>
                 {% for object in object_list %}
                 <tr>
-                  <td>{{ object.college_name }}</td>
-                  
+                    <td>{{ object.prog_name }}</td>
+                    <td>{{ object.college }}</td>
                   <td>
-                    <a href="college-list/{{ object.id }}">Edit</a>
+                    <a href="program_list/{{ object.id }}">Edit</a>
                     <a
-                      href="college-list/{{ object.id }}/delete"
+                      href="program_list/{{ object.id }}/delete"
                       class="text-danger"
                       >Delete</a
                     >
                   </td>
                 </tr>
-
                 {% empty %}
                 <tr>
                   <td colspan="4" style="text-align: center">
