@@ -209,6 +209,12 @@
 								<p>Program</p>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="{% url 'chart' %}">
+								<i class="la la-bar-chart"></i>
+								<p>Charts</p>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -267,6 +273,7 @@
 		</div>
 	</div>
 </body>
+<script src="{% static 'js/chart.js' %}"></script>
 <script src="{% static 'js/core/jquery.3.2.1.min.js' %}"></script>
 <script src="{% static 'js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js' %}"></script>
 <script src="{% static 'js/core/popper.min.js' %}"></script>

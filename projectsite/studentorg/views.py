@@ -12,6 +12,9 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
+from django.db.models import Count
+
+
 
 @method_decorator(login_required, name='dispatch')
 class HomePageView(ListView):
@@ -191,3 +194,20 @@ class Program_ListDeleteView(DeleteView):
     
     
 #############################################################################
+
+def chart_view(request):
+    organization_count = Organization.objects.count()
+    org_member_count = OrgMember.objects.count()
+    student_count = Student.objects.count()
+    college_count = College.objects.count()
+    program_count = Program.objects.count()
+
+    labels = ['Organizations', 'Org Members', 'Students', 'Colleges', 'Programs']
+    data = [organization_count, org_member_count, student_count, college_count, program_count]
+
+    context = {
+        'labels': labels,
+        'data': data,
+    }
+
+    return render(request, 'charts.html', context)

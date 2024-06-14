@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Overview Chart</h2>
+
+<div class="d-flex justify-content-center chart-container py-3" style="width: auto; height: 900px;"> 
+    <canvas id="overviewChart"></canvas>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ctx = document.getElementById('overviewChart').getContext('2d');
+    const labels = {{ labels|safe }};
+    const data = {{ data|safe }};
+    
+    const overviewChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Total',
+                data: data,
+                backgroundColor: [
+                    'rgb(0, 128, 255)',
+                    'rgb(128, 0, 128)',
+                    'rgb(34, 139, 34)',
+                    'rgb(255, 165, 0)',
+                    'rgb(139, 69, 19)'
+                    ],
+                borderColor: 'transparent',
+                borderWidth: 1
+            }]
+        },
+    });
+});
+</script>
+{% endblock %}
